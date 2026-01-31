@@ -6,6 +6,44 @@
         <title>Watched Netflix Series Reviews</title>
 
     <style>
+/* Updated to Red Theme */
+#asite-mod { 
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background: rgba(0, 0, 0, 0); backdrop-filter: blur(2px); 
+    display: flex; align-items: center; justify-content: center; 
+    z-index: 21000; pointer-events: none; opacity: 0; 
+    transition: all 0.4s ease; font-family: 'Poppins', sans-serif; 
+}
+
+#asite-mod.nav-ds-show { 
+    background: rgba(0, 0, 0, 0.85); pointer-events: auto; opacity: 1; 
+}
+
+.asite-card { 
+    background: #1c1c1e; 
+    border: 1px solid #ff3030; /* Red Border */
+    padding: 32px; border-radius: 28px; width: 340px; text-align: center; 
+    transform: scale(0.85); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+
+#asite-mod.nav-ds-show .asite-card { transform: scale(1); }
+
+.asite-ttl { 
+    color: #ff3030; /* Red Title */
+    margin-bottom: 12px; font-weight: 600; font-size: 20px; 
+}
+
+.asite-txt { color: #a1a1aa; font-size: 14px; margin-bottom: 25px; line-height: 1.4; }
+
+.asite-btn { 
+    width: 100%; padding: 12px; border-radius: 12px; border: none; 
+    cursor: pointer; font-weight: 600; transition: all 0.2s;
+    background: #ff3030; color: #fff; 
+}
+
+.asite-btn:hover { background: #cc0000; transform: translateY(-2px); }
+
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -598,6 +636,19 @@ Best Part: <a href="https://www.youtube.com/shorts/0x4jYPHhXj4">Click to Watch</
             </div>
         </div>
         
+
+<div class="asite-ovl" id="asite-mod">
+    <div class="asite-card">
+        <h3 class="asite-ttl">Outdated Page!</h3>
+        <p class="asite-txt" id="asite-msg">
+            This page is outdated and won't be updated. Some images and data might be inaccurate or missing.
+        </p>
+        <div class="asite-btns">
+            <button class="asite-btn" onclick="asiteExit()">Alright</button>
+        </div>
+    </div>
+</div>
+
     <script>
         const topicSelect = document.getElementById('topic-select');
         const showReviewButton = document.getElementById('show-review');
@@ -618,5 +669,22 @@ Best Part: <a href="https://www.youtube.com/shorts/0x4jYPHhXj4">Click to Watch</
         });
 
     </script>
+<script>
+    // Trigger the warning when the page loads
+    window.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('asite-mod');
+        // Small timeout ensures the transition animation plays smoothly
+        setTimeout(() => {
+            modal.classList.add('nav-ds-show');
+        }, 100);
+    });
+
+    // Close the modal
+    function asiteExit() {
+        const modal = document.getElementById('asite-mod');
+        modal.classList.remove('nav-ds-show');
+    }
+</script>
+
 </body>
 </html>
